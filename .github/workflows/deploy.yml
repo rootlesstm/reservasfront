@@ -1,0 +1,22 @@
+name: CI/CD Frontend
+
+on:
+  push:
+    branches: [dev, qa, prod]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Instalar dependencias
+        run: npm install
+
+      - name: Compilar Angular
+        run: npm run build -- --configuration=production
+
+      - name: Desplegar
+        run: echo "Desplegando a ${{ github.ref_name }}..."
