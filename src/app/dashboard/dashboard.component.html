@@ -1,0 +1,27 @@
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Salas disponibles</h2>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-striped text-center align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>Capacidad</th>
+                    <!-- <th>Ubicación</th> -->
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let sala of salas; let i = index">
+                    <td>{{ i + 1 }}</td>
+                    <td>{{ sala.name }}</td>
+                    <td>{{ sala.capacity }}</td>
+                    <!-- <td>{{ sala.ubicacion }}</td> -->
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <app-calendario [salas]="salas"></app-calendario>
+    <app-reservasformulario [salas]="salas"></app-reservasformulario>
+</div>

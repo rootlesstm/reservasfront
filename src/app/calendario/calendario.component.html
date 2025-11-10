@@ -1,0 +1,28 @@
+<div class="container mt-5">
+    <h3 class="text-center mb-4">Calendario de Reservas</h3>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover text-center align-middle">
+            <thead class="table-dark">
+                <tr>
+                    <th scope="col">Hora</th>
+                    <!-- <th scope="col" *ngFor="let sala of salas">{{ sala }}</th> -->
+                    <th scope="col">Sala</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let hora of horas">
+                    <th scope="row" class="bg-light">{{ hora }}</th>
+                    <td *ngFor="let sala of salas">
+                        <span class="badge" [ngClass]="{
+                'bg-danger': isOcupado(sala, hora),
+                'bg-success': !isOcupado(sala, hora)
+              }">
+                            {{ isOcupado(sala, hora) ? 'Ocupado' : 'Libre' }}
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
