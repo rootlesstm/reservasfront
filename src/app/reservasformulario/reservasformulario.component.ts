@@ -14,7 +14,7 @@ export class ReservasformularioComponent {
     @Input() salas: any[] = [];
     reservaForm: FormGroup;
     //private apiUrl = "http://localhost:8080";
-    private apiUrl = "http://35.184.178.249/api";
+    private apiUrl = "http://35.184.178.249";
 
     constructor(private fb: FormBuilder, private http: HttpClient) {
         this.reservaForm = this.fb.group({

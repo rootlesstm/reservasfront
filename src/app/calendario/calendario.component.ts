@@ -14,7 +14,7 @@ export class CalendarioComponent implements OnInit {
     horas = Array.from({ length: 12 }, (_, i) => `${8 + i}:00`);
     reservas: any[] = [];
     //private apiUrl = "http://localhost:8080";
-    private apiUrl = "http://35.184.178.249/api";
+    private apiUrl = "http://35.184.178.249";
 
     constructor(private http: HttpClient) { }
 
