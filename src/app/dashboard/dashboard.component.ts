@@ -14,7 +14,9 @@ import { HttpClient } from '@angular/common/http';
 export class DashboardComponent {
     salas: any[] = [];
     salaSeleccionada = '';
-    private apiUrl = "http://localhost:8080";
+    //private apiUrl = "http://localhost:8080";
+    private apiUrl = "http://35.184.178.249/api";
+
     constructor(private http: HttpClient) { }
 
     ngOnInit(): void {

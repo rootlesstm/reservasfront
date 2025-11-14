@@ -13,7 +13,9 @@ export class CalendarioComponent implements OnInit {
     @Input() salas: string[] = [];
     horas = Array.from({ length: 12 }, (_, i) => `${8 + i}:00`);
     reservas: any[] = [];
-    private apiUrl = "http://localhost:8080";
+    //private apiUrl = "http://localhost:8080";
+    private apiUrl = "http://35.184.178.249/api";
+
     constructor(private http: HttpClient) { }
 
     ngOnInit() {

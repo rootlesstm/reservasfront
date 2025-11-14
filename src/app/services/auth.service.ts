@@ -7,7 +7,8 @@ import { map, Observable, switchMap } from 'rxjs';
     providedIn: 'root'
 })
 export class AuthService {
-    private apiUrl = "http://localhost:8080/api";
+    //private apiUrl = "http://localhost:8080/api";
+    private apiUrl = "http://35.184.178.249/api";
 
     constructor(
         private router: Router
