@@ -31,8 +31,9 @@ export class CreateroomComponent {
             .subscribe({
                 next: (response) => {
                     alert('SALA CREADA CON EXTIO');
-                    this.closeModal();
                     window.location.reload();
+                    this.closeModal();
+
                 },
                 error: (err) => {
 
