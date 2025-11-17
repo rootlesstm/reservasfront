@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -12,6 +12,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 })
 export class ReservasformularioComponent {
     @Input() salas: any[] = [];
+
     reservaForm: FormGroup;
     //private apiUrl = "http://localhost:8080";
     private apiUrl = "http://35.184.178.249";
@@ -26,17 +27,17 @@ export class ReservasformularioComponent {
     }
 
     ngOnInit(): void {
-        this.http.get<any[]>(this.apiUrl + '/api/rooms').subscribe({
-            next: (data) => {
-                this.salas = data;
-            },
-            error: (err) => {
-                if (err.status === 422) {
-                    console.error('Errores del backend:', err.error.errors);
-                }
-                console.error('Error al cargar salas:', err);
-            }
-        });
+        // this.http.get<any[]>(this.apiUrl + '/api/rooms').subscribe({
+        //     next: (data) => {
+        //         this.salas = data;
+        //     },
+        //     error: (err) => {
+        //         if (err.status === 422) {
+        //             console.error('Errores del backend:', err.error.errors);
+        //         }
+        //         console.error('Error al cargar salas:', err);
+        //     }
+        // });
     }
 
     Reserver() {
@@ -56,12 +57,16 @@ export class ReservasformularioComponent {
             console.log('Payload enviado:', payload);
 
             this.http.post(this.apiUrl + '/api/bookings', payload).subscribe({
-                next: () => alert('Reserva creada'),
+                next: () => { alert('Reserva creada'); window.location.reload(); },
                 error: (err) => {
                     alert('Error: ' + err.message);
 
                 },
             });
         }
+    }
+
+    onSubmit() {
+        this.Reserver();
     }
 }

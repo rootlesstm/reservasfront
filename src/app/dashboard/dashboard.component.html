@@ -2,26 +2,65 @@
     <h2 class="text-center mb-4">Salas disponibles</h2>
 
     <div class="table-responsive">
-        <table class="table table-bordered table-striped text-center align-middle">
+        <select id="roomSelect" class="form-control" (change)="onRoomChange($event)">
+            <option value="">Todas</option>
+            <option *ngFor="let sala of salas" [value]="sala.id">
+                {{ sala.name }}
+            </option>
+        </select>
+        <!-- <table class="table table-bordered table-striped text-center align-middle">
             <thead class="table-dark">
                 <tr>
                     <th>#</th>
                     <th>Nombre</th>
                     <th>Capacidad</th>
-                    <!-- <th>Ubicación</th> -->
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let sala of salas; let i = index">
-                    <td>{{ i + 1 }}</td>
-                    <td>{{ sala.name }}</td>
-                    <td>{{ sala.capacity }}</td>
-                    <!-- <td>{{ sala.ubicacion }}</td> -->
-                </tr>
-            </tbody>
-        </table>
+                    <th>Ubicación</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let sala of salas; let i = index">
+                <td>{{ i + 1 }}</td>
+                <td>{{ sala.room.name }}</td>
+                <td>{{ sala.capacity }}</td>
+                <td>{{ sala.ubicacion }}</td>
+            </tr>
+        </tbody>
+        </table> -->
     </div>
 
-    <app-calendario [salas]="salas"></app-calendario>
+    <table class="table table-striped mt-3">
+        <thead>
+            <tr>
+                <th>Hora</th>
+                <th>Sala</th>
+                <th>Estado</th>
+                <th>Usuario</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let reserva of reservas">
+                <td>{{reserva.created_at | date}} -{{ reserva.start_time | date:'HH:mm' }} - {{ reserva.end_time |
+                    date:'HH:mm' }}</td>
+                <td>{{ reserva.room.name }}</td>
+                <td>reservado</td>
+                <td>{{ reserva.user.name }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- <app-calendario [salas]="salas"></app-calendario> -->
+    <!-- Botón en el padre -->
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#crearRoomModal">
+        Crear Sala
+    </button>
+
+    <!-- Modal controlado por el padre -->
+    <div class="modal fade" id="crearRoomModal" tabindex="-1" aria-labelledby="crearRoomLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <app-createroom></app-createroom>
+            </div>
+        </div>
+    </div>
     <app-reservasformulario [salas]="salas"></app-reservasformulario>
 </div>

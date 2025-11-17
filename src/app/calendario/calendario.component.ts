@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
 })
 export class CalendarioComponent implements OnInit {
 
-    @Input() salas: string[] = [];
+    @Input() salas: any[] = [];
     horas = Array.from({ length: 12 }, (_, i) => `${8 + i}:00`);
     reservas: any[] = [];
     //private apiUrl = "http://localhost:8080";
@@ -19,12 +19,18 @@ export class CalendarioComponent implements OnInit {
     constructor(private http: HttpClient) { }
 
     ngOnInit() {
-        this.http.get<any[]>(this.apiUrl + '/api/bookings').subscribe(data => {
-            this.reservas = data;
-        });
+        // this.http.get<any[]>(this.apiUrl + '/api/bookings').subscribe(data => {
+        //     this.reservas = data;
+        // });
     }
 
     isOcupado(sala: string, hora: string): boolean {
         return this.reservas.some(r => r.sala === sala && r.horaInicio === hora);
+    }
+
+    ngOnChanges() {
+        this.http.get<any[]>(this.apiUrl + '/api/bookings').subscribe(data => {
+            this.reservas = data;
+        });
     }
 }

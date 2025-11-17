@@ -1,4 +1,4 @@
-<form form [formGroup]="reservaForm" class="mt-5">
+<form form [formGroup]="reservaForm" class="mt-5" (ngSubmit)="onSubmit()">
     <h4 class="text-center mb-4">Crear Reserva</h4>
 
     <div class="mb-3">
@@ -24,6 +24,7 @@
     </div>
 
     <div class="text-center">
-        <button type="button" class="btn btn-primary" (click)="Reserver()">Reservar</button>
+        <!-- <button type="submit" class="btn btn-primary" (click)="Reserver()">Reservar</button> -->
+        <button type="submit" class="btn btn-primary">Reservar</button>
     </div>
 </form>

@@ -6,23 +6,49 @@
             <thead class="table-dark">
                 <tr>
                     <th scope="col">Hora</th>
-                    <!-- <th scope="col" *ngFor="let sala of salas">{{ sala }}</th> -->
+                    <!-- <th scope="col" *ngFor="let sala of salas">{{ sala.room.name }}</th> -->
                     <th scope="col">Sala</th>
+                    <th scope="col">Usuario</th>
+                    <th scope="col">Estado</th>
                 </tr>
             </thead>
             <tbody>
                 <tr *ngFor="let hora of horas">
                     <th scope="row" class="bg-light">{{ hora }}</th>
+                    <!-- <td scope="col" *ngFor="let sala of salas">{{ reservas.room.name }}</td>
+                    <td scope="col" *ngFor="let sala of salas">{{ sala.user.name }}</td> -->
                     <td *ngFor="let sala of salas">
+                        <!-- <span>{{sala.user.name}}</span>
+                        <span>{{sala.room.name}}</span> -->
                         <span class="badge" [ngClass]="{
                 'bg-danger': isOcupado(sala, hora),
-                'bg-success': !isOcupado(sala, hora)
-              }">
-                            {{ isOcupado(sala, hora) ? 'Ocupado' : 'Libre' }}
+                'bg-success': !isOcupado(sala, hora)}">
+                            {{ isOcupado(sala.room.name, hora) ? 'Ocupado' : 'Libre' }}
                         </span>
                     </td>
+
                 </tr>
-            </tbody>
+                <!-- <tr *ngFor="let reserva of reservas">
+                    
+                    <td>{{ reserva.start_time | date:'shortTime' }} - {{ reserva.end_time | date:'shortTime' }}</td>
+
+                    
+                    <td>{{ reserva.room.name }}</td>
+
+                    
+                    <td>
+                        <span [ngClass]="{
+          'text-success': reserva.status === 'confirmado',
+          'text-warning': reserva.status === 'pendiente',
+          'text-danger': reserva.status === 'cancelado'
+        }">
+                            {{ reserva.estado }}
+                        </span>
+                    </td>
+
+                    
+                    <td>{{ reserva.user.name }}</td>
+                </tr> -->
         </table>
     </div>
 </div>
